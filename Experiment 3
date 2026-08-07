@@ -1,0 +1,57 @@
+Experiment 3: Implement Queue using Stacks (Leetcode Problem 232)
+
+Aim:Implement a First In First Out (FIFO) queue using only two stacks. The implemented queue should support push, pop, peek, and empty operations.
+
+Algorithm:
+
+1.) Start
+2.) Create two stacks s1 and s2.
+3.) For the push(x) operation:
+Move all elements from s1 to s2.
+Push the new element x into s1.
+Move all elements back from s2 to s1.
+4.) For the pop() operation:
+Remove the top element of s1 and return it.
+5.) For the peek() operation:
+Return the top element of s1 without removing it.
+6.) For the empty() operation:
+Check whether s1 is empty.
+Return true if it is empty; otherwise, return false.
+7.) End
+
+Code:
+class MyQueue {
+public:
+    stack<int> s1;
+    stack<int> s2;
+
+    MyQueue() {
+
+    }
+
+    void push(int x) {
+        while(!s1.empty()){
+            s2.push(s1.top());
+            s1.pop();
+        }
+        s1.push(x);
+        while(!s2.empty()){
+            s1.push(s2.top());
+            s2.pop();
+        }
+    }
+
+    int pop() {
+        int x=s1.top();
+        s1.pop();
+        return x;
+    }
+
+    int peek() {
+        return s1.top();
+    }
+
+    bool empty() {
+        return s1.empty();
+    }
+};
