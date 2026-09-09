@@ -1,4 +1,6 @@
-Aim: Palindrome Linked List(Leetcode 234)
+Experiment 4.1: Palindrome Linked List(Leetcode 234)
+
+Aim: Given the head of a singly linked list, return true if it is a palindrome or false otherwise.
 
 Algorithm:
 
@@ -44,5 +46,49 @@ public:
         }
 
         return true;
+    }
+};
+
+Experiment 4.2: Odd Even Linked List(Leetcode 328)
+
+Aim: To implement a program that rearranges a singly linked list so that all nodes at odd positions appear first, followed by all nodes at even positions, while preserving the relative order within each group.
+
+Algorithm:
+
+1.)Start with the head of the linked list.
+2.)If the list has fewer than two nodes, return head.
+3.)Initialize odd to the first node and even to the second node.
+4.)Store the second node as evenHead to connect the even list later.
+5.)While even and even->next exist:
+   5.1)Connect the current odd node to the next odd node.
+   5.2)Move odd to the next odd node.
+   5.3)Connect the current even node to the next even node.
+   5.4)Move even to the next even node.
+6.)Connect the last odd node to evenHead.
+7.)Return head.
+
+Code:
+
+class Solution {
+public:
+    ListNode* oddEvenList(ListNode* head) {
+        if (!head || !head->next)
+            return head;
+
+        ListNode* odd = head;
+        ListNode* even = head->next;
+        ListNode* evenHead = even;
+
+        while (even && even->next) {
+            odd->next = even->next;
+            odd = odd->next;
+
+            even->next = odd->next;
+            even = even->next;
+        }
+
+        odd->next = evenHead;
+
+        return head;
     }
 };
