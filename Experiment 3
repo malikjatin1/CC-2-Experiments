@@ -1,4 +1,4 @@
-Experiment 3: Implement Queue using Stacks (Leetcode Problem 232)
+Experiment 3.1: Implement Queue using Stacks (Leetcode Problem 232)
 
 Aim:Implement a First In First Out (FIFO) queue using only two stacks. The implemented queue should support push, pop, peek, and empty operations.
 
@@ -53,5 +53,43 @@ public:
 
     bool empty() {
         return s1.empty();
+    }
+};
+
+Experiment 3.2: Largest Rectangle in Histogram
+
+Aim: Given an array of integers heights representing the histogram's bar heights where the width of each bar is 1, return the area of the largest rectangle in the histogram.
+
+Algorithm:
+
+1.)Initialize an empty stack and set the maximum area to 0.
+2.)Add a 0 at the end of the heights array.
+3.)Traverse the array from left to right.
+4.)While the stack is not empty and the current height is smaller than the height at the stack top, pop the top index.
+5.)Calculate the rectangle's height and width and update the maximum area.
+6.)Push the current index into the stack.
+7.)Return the maximum area.
+
+Code:
+
+class Solution {
+public:
+    int largestRectangleArea(vector<int>& heights) {
+        stack<int> st;
+        int ans = 0;
+        heights.push_back(0);
+
+        for (int i = 0; i < heights.size(); i++) {
+            while (!st.empty() && heights[st.top()] > heights[i]) {
+                int h = heights[st.top()];
+                st.pop();
+
+                int w = st.empty() ? i : i - st.top() - 1;
+                ans = max(ans, h * w);
+            }
+            st.push(i);
+        }
+
+        return ans;
     }
 };
