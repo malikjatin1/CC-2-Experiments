@@ -1,0 +1,48 @@
+Aim: Palindrome Linked List(Leetcode 234)
+
+Algorithm:
+
+1.)Start with head of the linked list.
+2.)Use two pointers, slow and fast, to find the middle node.
+3.)Move slow one step and fast two steps at a time.
+4.)Reverse the second half of the linked list.
+5.)Set left to head and right to the head of the reversed second half.
+6.)Compare the values of both halves one by one.
+7.)If any values are different, return false.
+8.)If all values match, return true.
+9.)Stop when the second half is completely compared.
+
+Code:
+
+class Solution {
+public:
+    bool isPalindrome(ListNode* head) {
+        ListNode *slow = head, *fast = head;
+
+        // Find middle
+        while (fast && fast->next) {
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+
+        // Reverse second half
+        ListNode *prev = nullptr;
+        while (slow) {
+            ListNode *next = slow->next;
+            slow->next = prev;
+            prev = slow;
+            slow = next;
+        }
+
+        // Compare both halves
+        ListNode *left = head, *right = prev;
+        while (right) {
+            if (left->val != right->val)
+                return false;
+            left = left->next;
+            right = right->next;
+        }
+
+        return true;
+    }
+};
