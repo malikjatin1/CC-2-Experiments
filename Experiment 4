@@ -1,4 +1,4 @@
-Experiment 4.1: Palindrome Linked List(Leetcode 234)
+Experiment 4.1: Palindrome Linked List(Leetcode Problem 234)
 
 Aim: Given the head of a singly linked list, return true if it is a palindrome or false otherwise.
 
@@ -49,7 +49,7 @@ public:
     }
 };
 
-Experiment 4.2: Odd Even Linked List(Leetcode 328)
+Experiment 4.2: Odd Even Linked List(Leetcode Problem 328)
 
 Aim: To implement a program that rearranges a singly linked list so that all nodes at odd positions appear first, followed by all nodes at even positions, while preserving the relative order within each group.
 
